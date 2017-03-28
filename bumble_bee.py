@@ -25,7 +25,7 @@ parser.add_argument('--path', metavar='path', type=str,
                     help='Path were to run the experiments (default .)')
 
 for testing_case in range(args.start, args.end, args.factor if args.factor else 1):
-    path = 'caso_' +  str(testing_case).zfill( len(str(args.end)) )
+    path = 'case_' + variable + '_' +  str(testing_case).zfill( len(str(args.end)) )
     print( path )
     try:
         shutil.copytree(args.src if  args.src else './src', path)    

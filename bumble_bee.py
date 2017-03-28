@@ -24,10 +24,6 @@ parser.add_argument('--src', metavar='source_dir', type=str,
 parser.add_argument('--path', metavar='path', type=str,
                     help='Path were to run the experiments (default .)')
 
-args = parser.parse_args()
-#print args.accumulate(args.integers)
-
-
 for testing_case in range(args.start, args.end, args.factor if args.factor else 1):
     path = 'caso_' +  str(testing_case).zfill( len(str(args.end)) )
     print( path )

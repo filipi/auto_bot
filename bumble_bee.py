@@ -40,7 +40,7 @@ for testing_case in range(args.start, args.end, args.factor if args.factor else 
     filename = path + '/' + (args.prm if  args.prm else 'incompact3d.prm')
     origin = open ( filename, 'r' )
     content = origin.read()
-    content_new = re.sub('(\d.|\d.\.).*\#' + args.var, r'0.\t#' + args.var, content, flags = re.M)
+    content_new = re.sub('(\d.|\d.\.).*\#' + args.var, str(testing_case) +  '.\t#' + args.var, content, flags = re.M)
     origin.close()
     destiny = open (filename, 'w' )
     destiny.write(content_new)

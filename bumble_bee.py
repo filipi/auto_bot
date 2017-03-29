@@ -28,7 +28,7 @@ parser.add_argument('--path', metavar='path', type=str,
 args = parser.parse_args()
 
 for testing_case in range(args.start, args.end, args.factor if args.factor else 1):
-    path = 'case_' + variable + '_' +  str(testing_case).zfill( len(str(args.end)) )
+    path = 'case_' + args.var + '_' +  str(testing_case).zfill( len(str(args.end)) )
     print( path )
     try:
         shutil.copytree(args.src if  args.src else './src', path)    
@@ -39,7 +39,7 @@ for testing_case in range(args.start, args.end, args.factor if args.factor else 
     filename = path + '/' + (args.prm if  args.prm else 'incompact3d.prm')
     origin = open ( filename, 'r' )
     content = origin.read()
-    content_new = re.sub('(\d.|\d.\.).*\#' + args.var, str(testing_case) +  '.\t#' + args.var, content, flags = re.M)
+    content_new = re.sub('(\d.|\d.\.).*\#' + args.var + '\s', str(testing_case) +  '.\t#' + args.var + ' ', content, flags = re.M)
     origin.close()
     destiny = open (filename, 'w' )
     destiny.write(content_new)

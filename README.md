@@ -16,6 +16,24 @@ usage: bumble_bee.py [-h] [--factor increment] [--prm param_file]
                      variable start end
 ```
 
+```
+Fortran + MPI numerical simulation experiments automation tool.
+
+positional arguments:
+  variable            the variable to change in fortran code
+  start               Start value for the chosen variable to loop.
+  end                 End value for the chosen variable to loop.
+
+optional arguments:
+  -h, --help          show this help message and exit
+  --factor increment  Factor to use when incrementing variable
+  --prm param_file    Fortran parameters file to locate VAR (default
+                      incompact3d.prm)
+  --src source_dir    Path for the template simulation (default ./src)
+  --path path         Path were to run the experiments (default .)
+
+```
+
 ## Example ##
 
 ```

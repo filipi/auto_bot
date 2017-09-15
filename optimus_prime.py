@@ -92,14 +92,14 @@ for case in args.cases:
         filename = c.file[i]['name']
         origin = open ( filename, 'r' )
         content = origin.read()        
+        origin.close()
         for j in c.file[i]:            
             if j != 'name':
                 print j + ' = ' + str(c.file[i][j])              
-                content = re.sub('(\d.|\d.\.).*\#' + j + '\s', str(c.file[i][j]) +  '.\t#' + j + ' ', content, flags = re.M)
-        origin.close()
-        destiny = open (filename, 'w' )
-        destiny.write(content)
-        
+                content_new = re.sub('(\d.|\d.\.).*\#' + j + '\s', str(c.file[i][j]) +  '.\t#' + j + ' ', content, flags = re.M)
+                destiny = open (filename, 'w' )
+                destiny.write(content_new)
+                destiny.close
 
 #     ##call(["make", ""])
 #     ##call(["mpi_rum", ""])

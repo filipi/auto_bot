@@ -60,16 +60,18 @@ print 'source_dir: ' + args.src
 error = False;
 for case in args.cases:
     print('Checking cases...')
-    error = checkFile(args.path + '/ ' + case + '.py', error)
+    error = checkFile(case + '.py', error)
 
     # First check if all the files exist
     print '#################################################'
     print 'Case: ' + case
     print('Checking files...')
     
-    c = importlib.import_module(case)   
-    for i in c.file:
-        error = checkFile(args.src + '/' + c.file[i]['name'], error)
+    if not error:
+        c = importlib.import_module(case)   
+        for i in c.file:
+            if c.file[i]['name']:
+                error = checkFile(args.src + '/' + c.file[i]['name'], error)
         
 if error:
     quit()

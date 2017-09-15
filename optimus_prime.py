@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 # Fortran + MPI numerical simulation experiments automated validation tool.
-# authors Ricardo Frantz <ricadro.frantz@acad.pucrs.br> and Filipi Vianna <filipi.vianna@pucrs.br>
+# authors
+#     Ricardo Frantz <ricadro.frantz@acad.pucrs.br> and
+#     Filipi Vianna <filipi.vianna@pucrs.br>
 # September, 2017
 
 import argparse #https://docs.python.org/2/library/argparse.html
@@ -20,20 +22,23 @@ parser.add_argument('--src', metavar='source_dir', type=str,
 parser.add_argument('--path', metavar='path', type=str,
                     help='Path were to run the experiments (default .)')
 
-##y ./optimus_prime.py -c channel cylinder tg
+## ./optimus_prime.py -c channel cylinder tg
 args = parser.parse_args()
 
 for case in args.cases:
     print(case)
 
+    c = importlib.import_module(case)
+    print(c.xlx) #check if importing
+  
 
 # for testing_case in range(args.start, args.end, args.factor if args.factor else 1):
-     path = 'case_' + args.var + '_' +  str(testing_case).zfill( len(str(args.end)) )
-     print( path )
-     try:
-         shutil.copytree(args.src if  args.src else './src', path)    
-     except OSError, e:
-         pass
+#     path = 'case_' + args.var + '_' +  str(testing_case).zfill( len(str(args.end)) )
+#     print( path )
+#     try:
+#         shutil.copytree(args.src if  args.src else './src', path)    
+#     except OSError, e:
+#         pass
 
 #     #os.chdir( path )
 #     filename = path + '/' + (args.prm if  args.prm else 'incompact3d.prm')

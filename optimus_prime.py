@@ -78,31 +78,28 @@ if error:
         
 
 for case in args.cases:
+    path = 'case_' + case
+    print( path )
+    try:
+        shutil.copytree(args.src, path)    
+    except OSError, e:
+        pass
+    
+    os.chdir( path )
     for i in c.file:
         print '------------------------------------------------'
         print 'Filename: ' + c.file[i]['name']
+        filename = c.file[i]['name']
+        origin = open ( filename, 'r' )
+        content = origin.read()        
         for j in c.file[i]:            
             if j != 'name':
-                print j + ' = ' + str(c.file[i][j])
-    
-    
-
-# for testing_case in range(args.start, args.end, args.factor if args.factor else 1):
-#     path = 'case_' + args.var + '_' +  str(testing_case).zfill( len(str(args.end)) )
-#     print( path )
-#     try:
-#         shutil.copytree(args.src if  args.src else './src', path)    
-#     except OSError, e:
-#         pass
-
-#     #os.chdir( path )
-#     filename = path + '/' + (args.prm if  args.prm else 'incompact3d.prm')
-#     origin = open ( filename, 'r' )
-#     content = origin.read()
-#     content_new = re.sub('(\d.|\d.\.).*\#' + args.var + '\s', str(testing_case) +  '.\t#' + args.var + ' ', content, flags = re.M)
-#     origin.close()
-#     destiny = open (filename, 'w' )
-#     destiny.write(content_new)
+                print j + ' = ' + str(c.file[i][j])              
+                content = re.sub('(\d.|\d.\.).*\#' + j + '\s', str(c.file[i][j]) +  '.\t#' + j + ' ', content, flags = re.M)
+        origin.close()
+        destiny = open (filename, 'w' )
+        destiny.write(content)
+        
 
 #     ##call(["make", ""])
 #     ##call(["mpi_rum", ""])

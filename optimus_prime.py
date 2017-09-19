@@ -149,7 +149,7 @@ for case in args.cases:
                     #print(content_new[0])
                     #quit()
                     
-                #print('Expressao regular para ' + j)
+                #print('Regular expression ' + j)
                 #print('(\d.|\d.\.).*\#' + j + '\s' )
                 #print( str(c.file[i][j]) + '.\t#' + j + ' ' )
                 #print('--------------------------------')
@@ -163,9 +163,9 @@ for case in args.cases:
 # ##call(["make", ""])
 #     ##call(["mpi_rum", ""])
 
-# mkdir caso_1 &&
-# cp -Rf src caso_1 &&
-# cd caso_1 &&
+# mkdir case_1 &&
+# cp -Rf src case_1 &&
+# cd case_1 &&
 # sed -ie 's/(\d.\d.*?)\#re/3000\t\#re/g' hello.txt
 # make &&
 # mpi_run .. &&

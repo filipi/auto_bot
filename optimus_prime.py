@@ -36,6 +36,8 @@ def checkFile(filename, error):
 
 ## TODO
 # Add an option to automatically generate an example case file.
+# Add an option to control the volume of output (verbese)
+# Add a function to check if more than one replacement is done
 
 # First checks if all files are present in source_dir
 # Copy source_dir for each case in cases
@@ -109,20 +111,33 @@ for case in args.cases:
                 re.purge()
                 
                 #print(content_new[1])
+                if (content_new[1] > 1):
+                    print('Waring! More than one line replaced')
+                    print (c.file[i]['name'])
+                    print (j)
+            
                 if (content_new[1] == 0):
                     pattern = j + '=\d.*?(\n|,)'
                     replace = j + '=' + str(c.file[i][j])
                     content_new = re.subn(pattern, replace,  content)
                     re.purge()
+                    if (content_new[1] > 1):
+                      print('Waring! More than one line replaced')                      
+                      print (c.file[i]['name'])
+                      print (j)
                     if (content_new[1] == 0):
                         pattern = j + '=\w.*?(\n)'
                         replace = j + '=' + str(c.file[i][j])
                         content_new = re.subn(pattern, replace,  content)
+                        if (content_new[1] > 1):
+                          print('Waring! More than one line replaced')
+                          print (c.file[i]['name'])
+                          print (j)                          
                         re.purge()
                         #print (pattern)
                         #print (replace)
                         #print(content_new[1])
-                
+                        
                 #if j == 'xlx':
                 #    print (pattern)
                 #    print (replace)

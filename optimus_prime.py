@@ -134,6 +134,11 @@ for case in args.cases:
                           print (c.file[i]['name'])
                           print (j)                          
                         re.purge()
+                        if (content_new[1] == 0):
+                            print ('Warning! Parameter not found')
+                            print (c.file[i]['name'])
+                            print (j)                          
+
                         #print (pattern)
                         #print (replace)
                         #print(content_new[1])

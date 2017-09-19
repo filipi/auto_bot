@@ -37,7 +37,7 @@ def checkFile(filename, error):
 ## TODO
 # Add an option to automatically generate an example case file.
 # Add an option to control the volume of output (verbese)
-# Add a function to check if more than one replacement is done
+# Add a function to check if more than one replacement was done
 
 # First checks if all files are present in source_dir
 # Copy source_dir for each case in cases

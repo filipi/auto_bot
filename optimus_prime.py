@@ -39,6 +39,11 @@ def checkFile(filename, error):
 # Add an option to control the volume of output (verbese)
 # Add a function to check if more than one replacement was done
 
+## To avoid the lots of nesting "ifs", use a dictionary
+## with all the regular expression patterns, and the replace string,
+## scan this dictionary and check for errors while there are
+## items in the dictionary or if errors
+
 # First checks if all files are present in source_dir
 # Copy source_dir for each case in cases
 # replace vars in case.file[]

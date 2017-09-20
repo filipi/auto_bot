@@ -122,8 +122,8 @@ for case in args.cases:
                     print (j)
             
                 if (content_new[1] == 0):
-                    pattern = j + '=\d.*?\n'
-                    replace = j + '=' + str(c.file[i][j])
+                    pattern = j + '=\d.*?(\n)'
+                    replace = j + '=' + str(c.file[i][j]) + '\n'
                     content_new = re.subn(pattern, replace,  content)
                     re.purge()
                     if (content_new[1] > 1):
@@ -132,7 +132,7 @@ for case in args.cases:
                         print (j)
 
                     if (content_new[1] == 0):
-                        pattern = j + '=\d.*?,'
+                        pattern = j + '=\d.*?(,)'
                         replace = j + '=' + str(c.file[i][j])
                         content_new = re.subn(pattern, replace,  content)
                         re.purge()
@@ -144,7 +144,7 @@ for case in args.cases:
 
                         if (content_new[1] == 0):
                             pattern = j + '=\w.*?(\n)'
-                            replace = j + '=' + str(c.file[i][j])
+                            replace = j + '=' + str(c.file[i][j]) + '\n'
                             content_new = re.subn(pattern, replace,  content)
                             re.purge()                            
                             if (content_new[1] > 1):

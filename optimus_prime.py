@@ -117,28 +117,41 @@ for case in args.cases:
                     print (j)
             
                 if (content_new[1] == 0):
-                    pattern = j + '=\d.*?(\n|,)'
+                    pattern = j + '=\d.*?\n'
                     replace = j + '=' + str(c.file[i][j])
                     content_new = re.subn(pattern, replace,  content)
                     re.purge()
                     if (content_new[1] > 1):
-                      print('Waring! More than one line replaced')                      
-                      print (c.file[i]['name'])
-                      print (j)
+                        print('Waring! More than one line replaced')                      
+                        print (c.file[i]['name'])
+                        print (j)
+
                     if (content_new[1] == 0):
-                        pattern = j + '=\w.*?(\n)'
+                        pattern = j + '=\d.*?,'
                         replace = j + '=' + str(c.file[i][j])
                         content_new = re.subn(pattern, replace,  content)
-                        if (content_new[1] > 1):
-                          print('Waring! More than one line replaced')
-                          print (c.file[i]['name'])
-                          print (j)                          
                         re.purge()
-                        if (content_new[1] == 0):
-                            print ('Warning! Parameter not found')
+                        if (content_new[1] > 1):
+                            print('Waring! More than one line replaced')                      
                             print (c.file[i]['name'])
-                            print (j)                          
+                            print (j)
 
+
+                        if (content_new[1] == 0):
+                            pattern = j + '=\w.*?(\n)'
+                            replace = j + '=' + str(c.file[i][j])
+                            content_new = re.subn(pattern, replace,  content)
+                            re.purge()                            
+                            if (content_new[1] > 1):
+                                print('Waring! More than one line replaced')
+                                print (c.file[i]['name'])
+                                print (j)                          
+
+                            if (content_new[1] == 0):
+                                print ('Warning! Parameter not found')
+                                print (c.file[i]['name'])
+                                print (j)                          
+    
                         #print (pattern)
                         #print (replace)
                         #print(content_new[1])

@@ -1,70 +1,75 @@
 #
 # INCOMPACT 3D Flow parameters
 #
-12.    #xlx    # Lx (Adimensional size in x-direction)
+14.2    #xlx    # Lx (Adimensional size in x-direction)
 0.     #xlx_pi # Physical domain start position (Adimensional size in x-dir)
-12.    #xlx_pf # Physical domain end position (Adimensional size in x-dir)
-2.     #yly    # Ly (Adimensional size in y-direction)
-12.    #zlz    # Lz (Adimensional size in z-direction)
-10000.  #re     # Reynolds number
+14.2    #xlx_pf # Physical domain end position (Adimensional size in x-dir)
+1.742  #yly    # Ly (Adimensional size in y-direction)
+14.2    #zlz    # Lz (Adimensional size in z-direction)
+130000. #re     # Reynolds number
 # Particle 1
-1.     # Richardson part number    [ri(1)]
+1.     # Richardson part number     [ri(1)]
 1.     # Schmidt number             [nsc(1)]
-0.02   # uset (part settling speed) [uset(1)]
+0.     # uset (part settling speed) [uset(1)]
 1.     # Concentration (part)       [cp(1)]
+1      # Group                      [group(1)]
 #
-0.     #angle     # For solid rotation
+0.     #group_amplitud #Injection time for each group
+0.     #angle     # Solid rotation angle in degrees
 2      #u1        # Convective velocity for velocity outflow (0: vphase, 1:umax1, 2: u2)
-1.     #u2        # Convective velocity for concentration outflow (0: use to use calculated vphase)
-0.     #noise     # Turbulence intensity for initial condition  (0.01=1%,1=100%) (perturbation at t=0)
-0.01   #noise1    # Turbulence intensity for inflow subroutine  (0.01=1%,1=100%) (perturbation of t>0)
-0.0006 #dt        # Time step
-0      #pfront    # Initial front position (for lock-exchange)
-2.     #lockwidth # Initial front position (for lock-exchange)
-0.8    #t1        # Acceleration time (for channel)
-3.8    #t2        # t3-0.5
-4.8    #t3        # Final time of injection (for channel)
+1.     #u2        # Convective velocity for concentration outflow (0: to use calculated vphase)
+0.2  #noise     # Intensity for initial condition (0.01=1%,1=100%) (t=0) (for lock and temporal)
+0      #noise1    # Intensity for inflow subroutine (0.01=1%,1=100%) (t>0)
+0.001 #dt        # Time step
+0.     #pfront or h0    # Initial front position (for lock-exchange)
+2.     #lockwidth or r0 # Initial front position (for channel-basin)
+0.     #t1        # Acceleration time (for channel)
+0.     #t2        # t3-0.5
+0.     #t3        # Final time of injection (for channel)
+#
+1.       #h0        #
+0.46     #r0        #
+2.21     #r1        #
 #
 # INCOMPACT3D Flow configuration
 #
-2      #nclx       # Boundary condition in x (0: Periodic, 1:Free-slip, 2: Dirichlet)
+1      #nclx       # Boundary condition in x (0: Periodic, 1:Free-slip, 2: Dirichlet)
 2      #ncly       # Boundary condition in y (0: Periodic, 1:Free-slip, 2: Dirichlet)
 1      #nclz       # Boundary condition in z (0: Periodic, 1:Free-slip, 2: Dirichlet)
 0      #itype      # Flow type (not being used, set directly on inflow)
-0      #iin        # Initial condition (0: empty, 1: prescribed)
+1      #iin        # Initial condition (0: empty, 1: prescribed)
 1      #ifirst     # First iteration
-100001  #ifin       # Last iteration
+200001    #ilast      # Last iteration
 4      #nscheme    # Temporal scheme (1:AB2, 2: RK3, 3:RK4, 4:AB3)
 0      #istret     # y-mesh refinement (0:no, 1:center, 2:both sides, 3:bottom)
 0      #beta       # Refinement parameter (AVOID)
 1      #iscalar    # Scalar is on?(0:no, 1:yes)
 2      #cont_phi   # Limit phi value?(0:no, 1:limit to 0 (can be greater than 1), 2: limit to 0 and 1)
-70     #callstat   # Call STATISTICS?(after time specified here, be sure is in steady state)
-1000   #ntik       # delta iterations for tik tak  
+100    #callstat   # Call STATISTICS?(after time specified here, be sure is in steady state)
+1000   #ntik       # delta iterations for tik tak
 #
 # INCOMPACT 3D File parameters
 #
 0      #filepath  # Relative data path (not working)
-0      #ilit      # Read initial flow field? (0:no, 1:yes)
-0      #filestart # Name of initial flow field (not working)
-50000  #isave     # Frequency for writing backup file (sauve.dat) !REQUIRES LOTs OF SPACE!
-400    #imodulo   # Frequency for visualization for VISU_INSTA
+0       #ilit      # Read initial flow field? (0:no, 1:yes)
+100000  #isave     # Frequency for writing backup file (sauve.dat)
+2000     #imodulo   # Frequency for visualization for VISU_INSTA
 0      #datapath  # Folder path to data files (not working)
 #
 # NUMERICAL DISSIPATION
 #
-16.     # npi2
+50.      # npi2
 #
-# INCOMPACT 3D Body Ramp (old school)
+# INCOMPACT 3D Body (old school)
 #
-0      #ivirt # IBM? (0:no-IBM, 1: old school, 2: Lagrangian Poly) 
-1.     # layer over the ramp                             [layer]
-7.     # vertical position ramp at the inflow boundary   [y0ramp]
+1      #ivirt # IBM? (0:no-IBM, 1: old school, 2: Lagrangian Poly)
+0.     # layer over the ramp                             [layer]
+0.     # vertical position ramp at the inflow boundary   [y0ramp]
 0.     # horizontal position ramp at the inflow boundary [x0ramp] #not working
-177.   # slope angle                                     [declramp] 
+0.   # slope angle                                     [declramp]
 #
 # INCOMPACT 3D Forcing with Lagrangian Polynomials
 #
-1      # Lagrangian polynomials ? (0:non,1:oui)                  [ilag]
-2      # Nombre (maximum) de points-fluide par frontière (0 à 3) [npif]
-1      # Zapping du premier point-fluide ? (0:non,1:oui)         [izap]
+0    # IBM with Lagrangian polynomials ? (0: no, 1: yes)                  [ilag]
+2    # The highest number of fluid-points at each boundary (0, 1, 2 or 3) [npif]
+1    # First fluid-point jump ? (0: no, 1: yes=advised)                   [izap]

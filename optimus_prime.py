@@ -15,14 +15,12 @@ import re
 import shutil
 from subprocess import call
 
-
 ## a small function that prints a string without breaking the line at the end
 ## https://stackoverflow.com/questions/493386/how-to-print-without-newline-or-space
 def printNNL(string):
     import sys
     sys.stdout.write(string)
     sys.stdout.flush()
-
 
 def checkFile(filename, error):
     printNNL('Filename: ' + filename)
@@ -33,16 +31,20 @@ def checkFile(filename, error):
         error = True
     return error
 
-
 ## TODO
 # Add an option to automatically generate an example case file.
 # Add an option to control the volume of output (verbese)
 # Add a function to check if more than one replacement was done
 
-## To avoid the lots of nesting "ifs", use a dictionary
-## with all the regular expression patterns, and the replace string,
-## scan this dictionary and check for errors while there are
-## items in the dictionary or if errors
+rules = {1:{}, 2:{}, 3:{}, 4:{}}
+rules[1]['pattern'] = '\'(\d.|\d.\.).*\#\' + j + \'\s\''
+rules[1]['replace'] = 'str(c.file[i][j]) + \'.\t#\' + j + \' \''
+rules[2]['pattern'] = 'j + \'=\d.*?(\\n)\''
+rules[2]['replace'] = 'j + \'=\' + str(c.file[i][j]) + \'\\n\''
+rules[3]['pattern'] = 'j + \'=\d.*?(,)\''
+rules[3]['replace'] = 'j + \'=\' + str(c.file[i][j])'
+rules[4]['pattern'] = 'j + \'=\w.*?(\\n)\''
+rules[4]['replace'] = 'j + \'=\' + str(c.file[i][j]) + \'\\n\''
 
 # First checks if all files are present in source_dir
 # Copy source_dir for each case in cases
@@ -82,7 +84,6 @@ for case in args.cases:
         for i in c.file:
             if c.file[i]['name']:
                 error = checkFile(args.src + '/' + c.file[i]['name'], error)
-
 if error:
     quit()
 
@@ -107,74 +108,24 @@ for case in args.cases:
         origin.close()
         for j in c.file[i]:
             if j != 'name':
-
-                #print(j + ' = ' + str(c.file[i][j]))
-                #content_new = re.sub('(\d.|\d.\.).*\#' + j + '(\s|\t)', str(c.file[i][j]) + '.\t#' + j + ' ', content, flags=re.M)
-                pattern = '(\d.|\d.\.).*\#' + j + '\s'
-                replace = str(c.file[i][j]) + '.\t#' + j + ' '
-                content_new = re.subn(pattern, replace,  content)
-                re.purge()
-                
-                #print(content_new[1])
-                if (content_new[1] > 1):
-                    print('Waring! More than one line replaced')
-                    print (c.file[i]['name'])
-                    print (j)
-            
-                if (content_new[1] == 0):
-                    pattern = j + '=\d.*?(\n)'
-                    replace = j + '=' + str(c.file[i][j]) + '\n'
+                for k in rules:                    
+                    pattern = eval(rules[k]['pattern'])
+                    replace = eval(rules[k]['replace'])
                     content_new = re.subn(pattern, replace,  content)
                     re.purge()
                     if (content_new[1] > 1):
-                        print('Waring! More than one line replaced')                      
+                        print('Waring! More than one line replaced')
                         print (c.file[i]['name'])
-                        print (j)
-
-                    if (content_new[1] == 0):
-                        pattern = j + '=\d.*?(,)'
-                        replace = j + '=' + str(c.file[i][j])
-                        content_new = re.subn(pattern, replace,  content)
-                        re.purge()
-                        if (content_new[1] > 1):
-                            print('Waring! More than one line replaced')                      
-                            print (c.file[i]['name'])
-                            print (j)
-
-
-                        if (content_new[1] == 0):
-                            pattern = j + '=\w.*?(\n)'
-                            replace = j + '=' + str(c.file[i][j]) + '\n'
-                            content_new = re.subn(pattern, replace,  content)
-                            re.purge()                            
-                            if (content_new[1] > 1):
-                                print('Waring! More than one line replaced')
-                                print (c.file[i]['name'])
-                                print (j)                          
-
-                            if (content_new[1] == 0):
-                                print ('Warning! Parameter not found')
-                                print (c.file[i]['name'])
-                                print (j)                          
-    
-                        #print (pattern)
-                        #print (replace)
-                        #print(content_new[1])
-                        
-                #if j == 'xlx':
-                #    print (pattern)
-                #    print (replace)
-                    #print(content_new[0])
-                    #quit()
-                    
-                #print('Regular expression ' + j)
-                #print('(\d.|\d.\.).*\#' + j + '\s' )
-                #print( str(c.file[i][j]) + '.\t#' + j + ' ' )
-                #print('--------------------------------')
+                        print (j)            
+                    if (content_new[1] != 0):
+                        break
+                if (content_new[1] == 0):
+                    print ('Warning! Parameter not found')
+                    print (c.file[i]['name'])
+                    print (j)                                              
+                
                 content = content_new[0]
                 destiny = open(filename, 'w')
-                #print(path)
-                #print(filename)
                 destiny.write(content_new[0])
                 destiny.close
 

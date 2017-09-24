@@ -128,7 +128,7 @@ for case in args.cases:
                 destiny = open(filename, 'w')
                 destiny.write(content_new[0])
                 destiny.close
-
+    os.chdir('..')
 # ##call(["make", ""])
 #     ##call(["mpi_rum", ""])
 

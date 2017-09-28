@@ -1,3 +1,5 @@
+auto_bot is a set of automation scripts
+
 # Installing #
 
 ## On linux ##

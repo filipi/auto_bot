@@ -1,4 +1,23 @@
-auto_bot is a set of automation scripts
+# Auto_bot #
+
+Auto_bot is a set of automation scripts written in python to automate the process of
+running numerical simulation experiments. There are currently only two bots, bumble_bee
+and optimus_prime. 
+
+## Bumble_bee ##
+
+Bumble_bee changes a single parameters in a fortram parameters file to create
+several test cases with different values for the chosen parameter. One can, 
+for example, try different Reynolds number (Re) values in a computational fluid dynamics
+(CFD) simulation.
+
+## Optimus_prime ##
+
+Optimus_prime changes more variables and parameters within the fortram code to
+prepare to automate the setup for certain validation experimental cases. The
+validation case can be specified in a python setup file, where will configured
+the fortram file to be changed and the parameters and variables with respective
+new values whose will be changed in the original fortram code.
 
 # Installing #
 

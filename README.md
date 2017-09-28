@@ -19,6 +19,24 @@ validation case can be specified in a python setup file, where will configured
 the fortram file to be changed and the parameters and variables with respective
 new values whose will be changed in the original fortram code.
 
+### Optimus_prime case file ###
+
+To specify the parameters to change with the autobot,
+add another dicionary to the file dictionary:
+file[N] = {} # where N is a number for each file
+you want to replace parameters
+
+Example:
+```
+file = {}
+file[1] = {}
+file[1]['name'] = 'file_A.f90' # file to replace parameters
+file[1]['nx'] = 1.             # assign 1. to the variable nx on file_A.f90
+file[2] = {}
+file[2]['name'] = 'file_B.f90'
+file[2]['nx'] = 2.
+```
+
 # Installing #
 
 ## On linux ##

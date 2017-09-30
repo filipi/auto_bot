@@ -27,13 +27,13 @@ def checkFile(filename, error):
     if os.path.isfile(filename):
         print(' [  OK  ]')
     else:
-        print(' [ FAIL ]')
+        print(' [MISSED]')
         error = True
     return error
 
 ## TODO
 # Add an option to automatically generate an example case file.
-# Add an option to control the volume of output (verbese)
+# Add an option to control the volume of output (verbose)
 # Add a function to check if more than one replacement was done
 
 rules = {1:{}, 2:{}, 3:{}, 4:{}}
@@ -71,13 +71,11 @@ if args.src is None:
 
 error = False;
 for case in args.cases:
-    #print('Checking cases...')
-    error = checkFile(case + '.py', error)
 
     # First check if all the files exist
-    #print('#################################################')
-    #print('Case: ' + case)
-    #print('Checking files...')
+    print('#######################################################################')
+    print('Checking files for case: ' + case)
+    error = checkFile(case + '.py', error)
 
     if not error:
         c = importlib.import_module(case)
@@ -85,8 +83,13 @@ for case in args.cases:
             if c.file[i]['name']:
                 error = checkFile(args.src + '/' + c.file[i]['name'], error)
 if error:
+    print('-----------------------------------------------------------------------')
+    print('ABORTED! No action was taken on your files.')
+    print('Please check any reported missing file before replacing the parameters.')
     quit()
 
+print('-----------------------------------------------------------------------')
+print('Replacing parameters...')
 for case in args.cases:
     path = 'case_' + case
     #print(path)
@@ -98,8 +101,7 @@ for case in args.cases:
 
     os.chdir(path)
     for i in c.file:
-        #print('------------------------------------------------')
-        #print('Filename: ' + c.file[i]['name'])
+        print(path + '/' + c.file[i]['name'])
         filename = c.file[i]['name']
         origin = open(filename, 'r')
         content = origin.read()

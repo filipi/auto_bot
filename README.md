@@ -29,7 +29,7 @@ new values to be replaced in the fortram original source code.
 To specify the parameters to change with the autobot,
 add another dicionary to the file dictionary:
 file[N] = {} # where N is a number for each file
-you want to replace parameters
+which have parameters you want to be replaced.
 
 Example:
 ```

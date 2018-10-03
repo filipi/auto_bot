@@ -1,8 +1,9 @@
 # Auto_bot #
 
 Auto_bot is a set of automation scripts written in python to automate the process of
-running numerical simulation experiments. There are currently only two bots, bumble_bee
-and optimus_prime.
+running numerical simulation experiments. It is particularly suitable to run tests at
+[Incompact3D](https://github.com/xcompact3d).There are currently only two bots,
+bumble_bee and optimus_prime.
 
 Each bot needs a fortram simulation source tree to be cloned by the bot for each
 new simulation case created by the bot. The bot will clone the source tree and

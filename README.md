@@ -82,7 +82,7 @@ optional arguments:
 ## Example ##
 
 ```
-~$ git clone git@bitbucket.org:filipivianna/auto_bot.git
+~$ git clone git@github.com:filipi/auto_bot.git
 Cloning into 'auto_bot'...
 remote: Counting objects: 20, done.
 remote: Compressing objects: 100% (17/17), done.

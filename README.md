@@ -48,7 +48,7 @@ file[2]['nx'] = 2.
 ## On linux ##
 
 ```
-~$ git clone git@bitbucket.org:filipivianna/auto_bot.git
+~$ git clone git@github.com:filipi/auto_bot.git
 ~$ cd auto_bot
 ~/auto_bot$ chmod +x bumble_bee.py
 ~/auto_bot$ ./bumble_bee.py

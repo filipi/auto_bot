@@ -5,25 +5,25 @@ running numerical simulation experiments. It is particularly suitable to run tes
 [Incompact3D](https://github.com/xcompact3d).There are currently only two bots,
 bumble_bee and optimus_prime.
 
-Each bot needs a fortram simulation source tree to be cloned by the bot for each
+Each bot needs a fortran simulation source tree to be cloned by the bot for each
 new simulation case created by the bot. The bot will clone the source tree and
 replace values of the parameters and/or variable necessary to run the validation
 trials.
 
 ## Bumble_bee ##
 
-Bumble_bee changes a single parameters in a fortram parameters file to create
+Bumble_bee changes a single parameters in a fortran parameters file to create
 several test cases with different values for the chosen parameter. One can, 
 for example, try different Reynolds number (Re) values in a computational fluid dynamics
 (CFD) simulation.
 
 ## Optimus_prime ##
 
-Optimus_prime bot changes more variables and parameters in the fortram code.
+Optimus_prime bot changes more variables and parameters in the fortran code.
 It is meant to prepare te code to run validation cases. The
 validation case can be specified in a python setup file.
 Which will have the the parameters and variables with respective
-new values to be replaced in the fortram original source code.
+new values to be replaced in the fortran original source code.
 
 ### Optimus_prime case file ###
 

@@ -1,6 +1,6 @@
-# Auto_bot #
+# Auto_bots #
 
-Auto_bot is a set of automation scripts written in python to automate the process of
+Auto_bots is a set of automation scripts written in python to automate the process of
 running numerical simulation experiments. It is particularly suitable to run tests at
 [Incompact3D](https://github.com/xcompact3d).There are currently only two bots,
 bumble_bee and optimus_prime.
@@ -48,10 +48,10 @@ file[2]['nx'] = 2.
 ## On linux ##
 
 ```
-~$ git clone git@github.com:filipi/auto_bot.git
-~$ cd auto_bot
-~/auto_bot$ chmod +x bumble_bee.py
-~/auto_bot$ ./bumble_bee.py
+~$ git clone git@github.com:filipi/incompact3d_auto_bots.git
+~$ cd incompact3d_auto_bots
+~/incompact3d_auto_bots$ chmod +x bumble_bee.py
+~/incompact3d_auto_bots$ ./bumble_bee.py
 ```
 ## Usage ##
 
@@ -82,22 +82,22 @@ optional arguments:
 ## Example ##
 
 ```
-~$ git clone git@github.com:filipi/auto_bot.git
-Cloning into 'auto_bot'...
+~$ git clone git@github.com:filipi/incompact3d_auto_bots.git
+Cloning into 'incompact3d_auto_bots'...
 remote: Counting objects: 20, done.
 remote: Compressing objects: 100% (17/17), done.
 remote: Total 20 (delta 5), reused 0 (delta 0)
 Receiving objects: 100% (20/20), done.
 Resolving deltas: 100% (5/5), done.
 Checking connectivity... done.
-~$ cd auto_bot
-~/auto_bot$ chmod +x bumble_bee.py
-~/auto_bot$ ./bumble_bee.py
+~$ cd incompact3d_auto_bots
+~/incompact3d_auto_bots$ chmod +x bumble_bee.py
+~/incompact3d_auto_bots$ ./bumble_bee.py
 usage: bumble_bee.py [-h] [--factor increment] [--prm param_file]
                      [--src source_dir] [--path path]
                      variable start end
 bumble_bee.py: error: too few arguments
-~/auto_bot$
+~/incompact3d_auto_bots$
 ```
 
 
